@@ -1,0 +1,19 @@
+def ordenar_lista_limitada(): ###Creamos una función llamada 'ordenar_lista_limitada'
+    numeros = []   #### Creamos una lista vacía llamada 'numeros' para almacenar los números ingresados
+    limite = 9   ###Establecemos un límite de 9 números
+    
+    while len(numeros) < limite:  #### Iniciamos un bucle 'while' que se ejecutará mientras la longitud de 'numeros' sea menor que 'limite'
+   
+        try:
+            numero = float(input(f"Ingrese el número {len(numeros) + 1}: "))   #### Solicitamos al usuario que ingrese un número y lo convertimos a un número de punto flotante (float)
+            numeros.append(numero)  ###Agregamos el número a la lista 'numeros'
+        except ValueError:  #### Si el usuario ingresa algo que no se puede convertir a un número, mostramos un mensaje de error
+
+            print("Debe ingresar un número válido.")
+    
+    lista_ordenada = sorted(numeros)   #### Ordenamos la lista 'numeros' usando la función 'sorted' y almacenamos el resultado en 'lista_ordenada'
+    return lista_ordenada   #### Devolvemos la lista ordenada como resultado de la función
+
+# Ejemplo de uso
+lista_ordenada = ordenar_lista_limitada()
+print("Lista ordenada:", lista_ordenada)
