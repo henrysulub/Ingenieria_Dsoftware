@@ -1,78 +1,43 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyMozXYK4Z8GRfSvx76AGG8w"
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "code",
-      "source": [
-        "def ordenar_lista_pares_impares():\n",
-        "    numeros = []  # Crear una lista vacía para almacenar los números ingresados\n",
-        "    limite = 10  # Establecer un límite de 9 números\n",
-        "\n",
-        "    while len(numeros) < limite:  # Iniciar un bucle mientras no se haya alcanzado el límite\n",
-        "        try:\n",
-        "            numero = float(input(f\"Ingrese el número {len(numeros) + 1}: \"))  # Solicitar un número y convertirlo a punto flotante\n",
-        "            numeros.append(numero)  # Agregar el número a la lista\n",
-        "        except ValueError:  # Manejar errores si el usuario ingresa un valor no válido\n",
-        "            print(\"Debe ingresar un número válido.\")\n",
-        "\n",
-        "    # Separar números en pares e impares manteniendo la posición original\n",
-        "    numeros_pares = [numero for numero in numeros if numero % 2 == 0]\n",
-        "    numeros_impares = [numero for numero in numeros if numero % 2 != 0]\n",
-        "\n",
-        "    # Ordenar las listas de números pares e impares por separado\n",
-        "    numeros_pares.sort()\n",
-        "    numeros_impares.sort()\n",
-        "\n",
-        "    # Combinar las listas ordenadas de pares e impares manteniendo la posición original\n",
-        "    lista_final = []\n",
-        "    lista_final.extend(numeros_pares)  # Agregar números pares\n",
-        "    lista_final.extend(numeros_impares)  # Agregar números impares\n",
-        "\n",
-        "    return lista_final  # Devolver la lista final ordenada\n",
-        "\n",
-        "# Ejemplo 1 de uso\n",
-        "lista_final = ordenar_lista_pares_impares()\n",
-        "print(\"Lista con números pares primero y luego los impares:\", lista_final)\n",
-        "\n",
-        "\n",
-        "######## La ambigüedad que podría surgir está relacionada con la entrada del usuario, la ordenación de números idénticos y la combinación de números pares e impares con valores iguales.\n",
-        "\n",
-        "### 1.\tAmbigüedad en la Entrada del Usuario: El código puede enfrentar ambigüedad si el usuario ingresa números de punto flotante con formatos diferentes o caracteres no numéricos.\n",
-        "### El código intenta manejar esto al verificar si la entrada del usuario es un número válido y mostrar un mensaje de error en caso contrario.\n",
-        "### 2.\tInterpretación de la Ordenación: En el proceso de ordenación, si los números en la lista contienen valores idénticos, el código no especifica un criterio de ordenación adicional\n",
-        "### para manejar esta ambigüedad. Por lo tanto, los números iguales se ordenarán en función de su orden original en la lista.\n",
-        "### 3.\tAmbigüedad en la Combinación de Números Pares e Impares: El código ordena y combina los números pares e impares, pero si dos números pares o dos números impares son iguales,\n",
-        "### podría haber ambigüedad en la forma en que se organizan en la lista final.\n",
-        "\n",
-        "############## PROPUESTA DE MEJORA\n",
-        "### Para mejorar el manejo de la ambigüedad en el código y abordar situaciones ambiguas, una alternativa sería permitir al usuario especificar un criterio de ordenación adicional\n",
-        "### o un identificador único para los números en caso de que se encuentren números idénticos. Esto podría lograrse mediante un argumento adicional en la función,\n",
-        "#### que permita al usuario definir cómo desea que se resuelva la ambigüedad.\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n"
-      ],
-      "metadata": {
-        "id": "rcDKsfiLaEjQ"
-      },
-      "execution_count": null,
-      "outputs": []
-    }
-  ]
-}
+def ordenar_lista_pares_impares():
+    numeros = []  # Crear una lista vacía para almacenar los números ingresados
+    limite = 9  # Establecer un límite de 9 números
+
+    while len(numeros) < limite:  # Iniciar un bucle mientras no se haya alcanzado el límite
+        try:
+            numero = float(input(f"Ingrese el número {len(numeros) + 1}: "))  # Solicitar un número y convertirlo a punto flotante
+            numeros.append(numero)  # Agregar el número a la lista
+        except ValueError:  # Manejar errores si el usuario ingresa un valor no válido
+            print("Debe ingresar un número válido.")
+
+    # Separar números en pares e impares manteniendo la posición original
+    numeros_pares = [numero for numero in numeros if numero % 2 == 0]
+    numeros_impares = [numero for numero in numeros if numero % 2 != 0]
+
+    # Ordenar las listas de números pares e impares por separado
+    numeros_pares.sort()
+    numeros_impares.sort()
+
+    # Combinar las listas ordenadas de pares e impares manteniendo la posición original
+    lista_final = []
+    lista_final.extend(numeros_pares)  # Agregar números pares
+    lista_final.extend(numeros_impares)  # Agregar números impares
+
+    return lista_final  # Devolver la lista final ordenada
+
+# Ejemplo de uso
+lista_final = ordenar_lista_pares_impares()
+print("Lista con números pares primero y luego los impares:", lista_final)
+
+### . La ambigüedad que podría surgir está relacionada con la entrada del usuario, la ordenación de números idénticos y la combinación de números pares e impares con valores iguales.
+
+####### 1.	Ambigüedad en la Entrada del Usuario: El código puede enfrentar ambigüedad si el usuario ingresa números de punto flotante con formatos diferentes o caracteres no numéricos. 
+###El código intenta manejar esto al verificar si la entrada del usuario es un número válido y mostrar un mensaje de error en caso contrario.
+###2.	Interpretación de la Ordenación: En el proceso de ordenación, si los números en la lista contienen valores idénticos, el código no especifica un criterio de ordenación adicional
+### para manejar esta ambigüedad. Por lo tanto, los números iguales se ordenarán en función de su orden original en la lista.
+###3.	Ambigüedad en la Combinación de Números Pares e Impares: El código ordena y combina los números pares e impares, pero si dos números pares o dos números impares son iguales, 
+###78podría haber ambigüedad en la forma en que se organizan en la lista final.
+
+##############
+#### Para mejorar el manejo de la ambigüedad en el código y abordar situaciones ambiguas, una alternativa sería permitir al usuario especificar un criterio de ordenación adicional
+### o un identificador único para los números en caso de que se encuentren números idénticos. Esto podría lograrse mediante un argumento adicional en la función, 
+#### que permita al usuario definir cómo desea que se resuelva la ambigüedad
